@@ -13,14 +13,14 @@
                 v-model.trim="Language"  
                 @change="$emit('selectLanguage', Language)">
 
-            <option value="it-IT">it</option>
-            <option value="en-EN">en</option>
-            <option value="fr-FR">fr</option>
-            <option value="es-ES">es</option>
-            <option value="de-DE">de</option>
-            <option value="zh-ZH">zh</option>
-            <option value="ja-JA">ja</option>
-            <option value="ar-AR">ar</option>
+            <option value="it-IT">Italian</option>
+            <option value="en-EN">English </option>
+            <option value="fr-FR">French </option>
+            <option value="es-ES">Spanish</option>
+            <option value="de-DE">German</option>
+            <option value="zh-ZH">Chinese</option>
+            <option value="ja-JA">Japanese</option>
+            <option value="ar-AR">Arabic</option>
         </select>
     </div>
   </div>
