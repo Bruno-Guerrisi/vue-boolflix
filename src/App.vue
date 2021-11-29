@@ -1,28 +1,82 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    
+    <header>
+      <Header @ClickSearch='Result' />
+    </header>
+
+    <main>
+      <Main :Films="listFilms"/>
+    </main>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import axios from 'axios';
+import Header from '@/components/Header.vue';
+import Main from '@/components/Main.vue';
 
 export default {
   name: 'App',
+
   components: {
-    HelloWorld
-  }
+    Header,
+    Main,
+  },
+
+  data() {
+    return {
+      listFilms: null,
+      SearchResult: '',
+    }
+  },
+
+  methods: {
+
+    getListFilm(){
+
+      axios.get('https://api.themoviedb.org/3/search/movie', {
+        params: {
+          api_key: '39c71b5436e3551a0f94369219cc87ba',
+          query: this.SearchResult,
+          language: 'it-IT',
+        },
+      })
+
+      .then(result => {
+        this.listFilms = result.data.results;
+        console.log(result.data);
+      })
+      .catch(error => {
+        console.log(error);
+      })
+    },
+
+    Result(text){
+      this.SearchResult = text;
+
+      this.getListFilm();
+    },
+  },
 }
+
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+@import '@/style/globals';
+
+  #app{
+    background-color: rgb(19, 19, 63);
+    min-height: 100vh;
+    
+      header{
+        background-color: rgb(28, 28, 97);
+      }
+
+      main{
+        color: white;
+        padding: 20px;
+      }
+  }
+
 </style>
