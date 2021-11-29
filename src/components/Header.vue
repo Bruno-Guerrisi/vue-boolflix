@@ -7,6 +7,22 @@
 
         <button @click="$emit('ClickSearch', searchUser)">search</button>
     </div>
+
+    <div class="language">
+        <select name="Language" 
+                v-model.trim="Language"  
+                @change="$emit('selectLanguage', Language)">
+
+            <option value="it-IT">it</option>
+            <option value="en-EN">en</option>
+            <option value="fr-FR">fr</option>
+            <option value="es-ES">es</option>
+            <option value="de-DE">de</option>
+            <option value="zh-ZH">zh</option>
+            <option value="ja-JA">ja</option>
+            <option value="ar-AR">ar</option>
+        </select>
+    </div>
   </div>
 </template>
 
@@ -21,6 +37,7 @@ export default {
     data() {
         return{
             searchUser: '',
+            Language: '',
         }
     },
 }

@@ -37,11 +37,13 @@ export default {
     computed: {
 
         arrOn () {
-        return this.arrLanguage.includes(this.language);
+            return this.arrLanguage.includes(this.language);
         },
 
         repeaTitle () {
-        return this.title == this.subTitle;
+            return this.title.replace(/ /g, "").toLowerCase() 
+            == 
+            this.subTitle.replace(/ /g, "").toLowerCase();
         },
     }
 }

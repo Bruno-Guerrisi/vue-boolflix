@@ -2,7 +2,7 @@
   <div id="app">
     
     <header>
-      <Header @ClickSearch='Result' />
+      <Header @ClickSearch='Result' @selectLanguage='currentLanguage' />
     </header>
 
     <main>
@@ -28,6 +28,7 @@ export default {
     return {
       listFilms: null,
       SearchResult: '',
+      Language: 'it-IT',
     }
   },
 
@@ -41,7 +42,7 @@ export default {
           params: {
             api_key: '39c71b5436e3551a0f94369219cc87ba',
             query: this.SearchResult,
-            language: 'it-IT',
+            language: this.Language,
           },
         })
 
@@ -55,6 +56,12 @@ export default {
       } else {
         this.listFilms = null;
       }
+    },
+
+    currentLanguage(text){
+      this.Language = text;
+
+      this.getListFilm();
     },
 
     Result(text){
