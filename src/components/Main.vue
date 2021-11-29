@@ -1,20 +1,21 @@
 <template>
   <div class="container">
     
-    <div class="films">
-        <ul v-for="(element, i) in Films" :key="`element-${i}`">
-            <li>{{element.title}}</li>
-            <li>{{element.original_title}}</li>
-            <li>{{element.original_language}}</li>
-            <li>{{element.vote_average}}</li>
-        </ul>
-    </div>
+
+    <ul class="film" v-for="(element, i) in Films" :key="`element-${i}`">
+        
+        <Card :title="element.title" 
+        :subTitle="element.original_title" 
+        :language="element.original_language" 
+        :num="element.vote_average" />
+    </ul>
+
 
   </div>
 </template>
 
 <script>
-
+import Card from '@/components/Card.vue';
 
 export default {
   name: 'Main',
@@ -23,20 +24,18 @@ export default {
     Films: Array,
   },
   components: {
-    
+    Card,
   },
 }
 </script>
 
 <style lang="scss" scoped>
+
     div.container{
 
-        div.films{
+        ul.film{
 
-            ul{
-
-                margin-bottom: 20px;
-            }
+            margin-bottom: 20px;
         }
     }
 
