@@ -2,13 +2,17 @@
   <div class="container">
     
 
-    <ul class="film" v-for="(element, i) in Films" :key="`element-${i}`">
-        
-        <Card :title="element.title" 
-        :subTitle="element.original_title" 
-        :language="element.original_language" 
-        :num="element.vote_average" />
-    </ul>
+    <div v-if="Films != null ">
+
+        <ul class="film" v-for="(element, i) in Films" :key="`element-${i}`">
+            
+            <Card :title="element.title" 
+            :subTitle="element.original_title" 
+            :language="element.original_language" 
+            :num="element.vote_average"
+            :date="element.release_date" />
+        </ul>
+    </div>
 
 
   </div>

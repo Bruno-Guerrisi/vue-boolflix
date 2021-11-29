@@ -53,7 +53,7 @@ export default {
           console.log(error);
         })
       } else {
-        this.listFilms = [];
+        this.listFilms = null;
       }
     },
 
