@@ -35,21 +35,26 @@ export default {
 
     getListFilm(){
 
-      axios.get('https://api.themoviedb.org/3/search/movie', {
-        params: {
-          api_key: '39c71b5436e3551a0f94369219cc87ba',
-          query: this.SearchResult,
-          language: 'it-IT',
-        },
-      })
+      if (this.SearchResult != '') {
 
-      .then(result => {
-        this.listFilms = result.data.results;
-        console.log(result.data);
-      })
-      .catch(error => {
-        console.log(error);
-      })
+        axios.get('https://api.themoviedb.org/3/search/movie', {
+          params: {
+            api_key: '39c71b5436e3551a0f94369219cc87ba',
+            query: this.SearchResult,
+            language: 'it-IT',
+          },
+        })
+
+        .then(result => {
+          this.listFilms = result.data.results;
+          console.log(result.data);
+        })
+        .catch(error => {
+          console.log(error);
+        })
+      } else {
+        this.listFilms = [];
+      }
     },
 
     Result(text){
