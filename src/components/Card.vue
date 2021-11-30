@@ -2,7 +2,12 @@
   
     <div>
         <!-- copertina -->
-        <img :src="`https://image.tmdb.org/t/p/w185${poster}`" :alt="title">
+        <img v-if="poster != null " 
+            :src="`https://image.tmdb.org/t/p/w185${poster}`" 
+            :alt="title"
+            class="porster">
+
+        <div class="no-poster porster" v-else>No image</div>
 
         <li v-if="repeaTitle == false">
             <span class="info">Titolo:</span> {{title}}
@@ -68,6 +73,22 @@ export default {
 
 <style lang="scss">
     div{
+
+        .porster{
+            margin-bottom: 10px;
+        }
+
+        .no-poster{
+            width: 185px;
+            height: 277px;
+            background-color: rgb(73, 73, 73);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+
         li{
             margin-bottom: 10px;
 

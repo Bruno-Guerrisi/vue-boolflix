@@ -72,9 +72,17 @@ export default {
             justify-content: center;
 
             ul.film{
-                text-align: center;
+
                 padding: 20px;
                 width: calc(100% / 4);
+
+                div{
+
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+
+                }
             }
         }
 
