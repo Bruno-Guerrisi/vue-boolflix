@@ -3,14 +3,14 @@
     <div class="search-bar">
         <input type="text" 
                 placeholder="inserire titolo film"
-                v-model.trim="searchUser">
+                v-model.trim="searchUser"
+                @keyup.enter="$emit('ClickSearch', searchUser)">
 
         <button @click="$emit('ClickSearch', searchUser)">search</button>
     </div>
 
     <div class="language">
-        <select name="Language" 
-                v-model.trim="Language"  
+        <select v-model.trim="Language"  
                 @change="$emit('selectLanguage', Language)">
 
             <option value="it-IT">Italian</option>
@@ -62,6 +62,13 @@ export default {
             button{
                 width: 50px;
                 height: 100%;
+            }
+        }
+
+        div.language{
+            
+            select{
+                min-width: 50px;
             }
         }
     }
