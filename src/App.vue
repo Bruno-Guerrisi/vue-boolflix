@@ -74,7 +74,7 @@ export default {
                 .catch(error => {
                     console.log(error);
                 })
-            } 
+            }
             else {
                 this.listFilms = null;
                 this.listSeries = null;

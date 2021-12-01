@@ -12,6 +12,7 @@
             :subTitle="element.original_title" 
             :language="element.original_language" 
             :num="element.vote_average"
+            :description="element.overview"
             :date="element.release_date" />
         </ul>
 
@@ -23,6 +24,7 @@
             :subTitle="element.original_name" 
             :language="element.original_language" 
             :num="element.vote_average"
+            :description="element.overview"
             :date="element.first_air_date" />
         </ul>
     </div>

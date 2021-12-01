@@ -1,38 +1,58 @@
 <template>
   
-    <div>
+    <div class="container-list">
         <!-- copertina -->
-        <img v-if="poster != null " 
-            :src="`https://image.tmdb.org/t/p/w185${poster}`" 
+        <img v-if="poster != null || poster != undefined" 
+            :src="`https://image.tmdb.org/t/p/w342${poster}`" 
             :alt="title"
             class="porster">
 
         <div class="no-poster porster" v-else>No image</div>
 
-        <li v-if="repeaTitle == false">
-            <span class="info">Titolo:</span> {{title}}
-        </li>
+        <div class="info-list">
 
-        <li>
-            <span class="info">Titolo originale:</span> {{subTitle}}
-        </li>
+            <li v-if="repeaTitle == false">
+                <span class="info">Titolo:</span> {{title}}
+            </li>
 
-        <li>
-            <span class="info">Data:</span> {{date}}
-        </li>
+            <li>
+                <span class="info">Titolo originale:</span> {{subTitle}}
+            </li>
 
-        <li v-if="arrOn == true">
-            <span class="info">Lingua: </span>
-            <img :src="require(`@/assets/img/${language}.png`)" 
-                :alt="title">
-        </li>
-        <li v-else>
-            <span class="info">Lingua:</span> {{language}}
-        </li>
+            <li>
+                <span class="info">Data:</span> {{date}}
+            </li>
 
-        <li>
-            <span class="info">Voto:</span> {{num}}
-        </li>
+            <li v-if="arrOn == true">
+                <span class="info">Lingua: </span>
+                <img :src="require(`@/assets/img/${language}.png`)" 
+                    :alt="title">
+            </li>
+            <li v-else>
+                <span class="info">Lingua:</span> {{language}}
+            </li>
+
+            <li>
+                <span class="info">Voto:</span>
+
+                <i v-for="(n , i) in Math.ceil(num / 2)" 
+                    :key="`starOne-${i}`" 
+                    class="fas fa-star starOne"></i>
+
+                <i v-for="(n , i) in  (5 - Math.ceil(num / 2))" 
+                    :key="`starTwo-${i}`" 
+                    class="far fa-star starTwo"></i>
+
+            </li>
+
+            <li v-if="description != '' " class="overview">
+                <span class="info">Overview:</span> {{description}}
+            </li>
+
+            <li v-else class="overview">
+                <span class="info">Overview:</span> No description
+            </li>
+        </div>
     </div>
 
 </template>
@@ -49,6 +69,7 @@ export default {
         language: String,
         num: Number,
         date: String,
+        description: String,
     },
     data(){
       return {
@@ -72,11 +93,24 @@ export default {
 </script>
 
 <style lang="scss">
-    div{
+    div.container-list{
 
-        .porster{
-            margin-bottom: 10px;
+        position: relative;
+        cursor: pointer;
+
+        &:hover div.info-list{
+            display: block;
         }
+
+        &:hover::before{
+            content: '';
+            background-color: rgba(0, 0, 0, 0.815);
+            width: 100%;
+            height: 100%;
+            display: block;
+            position: absolute;
+        }
+
 
         .no-poster{
             width: 185px;
@@ -88,16 +122,40 @@ export default {
             color: white;
         }
 
+        div.info-list{
 
-        li{
+            position: absolute;
+            padding: 10px;
             margin-bottom: 10px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 95%;
+            min-width: 90%;
+            max-height: 90%;
+            overflow-y: auto;
+            display: none;
 
-            span.info{
-                color: rgb(133, 133, 133);
-            }
+            li{
 
-            img{
-                width: 30px;
+                list-style: none;
+
+                margin-bottom: 10px;
+    
+                span.info{
+                    color: rgb(133, 133, 133);
+                }
+    
+                img{
+                    width: 30px;
+                }
+    
+                .starOne{
+                    color: yellow;
+                }
+                .starTwo{
+                    color: gray;
+                }
             }
         }
     }
