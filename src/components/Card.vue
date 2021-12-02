@@ -113,8 +113,8 @@ export default {
 
 
         .no-poster{
-            width: 185px;
-            height: 277px;
+            width: 342px;
+            height: 513px;
             background-color: rgb(73, 73, 73);
             display: flex;
             justify-content: center;
@@ -135,6 +135,7 @@ export default {
             max-height: 90%;
             overflow-y: auto;
             display: none;
+            transition: all 0.2s;
 
             li{
 
