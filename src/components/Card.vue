@@ -3,7 +3,7 @@
     <div class="container-list">
         <!-- copertina -->
         <img v-if="poster != null || poster != undefined" 
-            :src="`https://image.tmdb.org/t/p/w342${poster}`" 
+            :src="`https://image.tmdb.org/t/p/w300${poster}`" 
             :alt="title"
             class="porster">
 
@@ -135,7 +135,6 @@ export default {
             max-height: 90%;
             overflow-y: auto;
             display: none;
-            transition: all 0.2s;
 
             li{
 

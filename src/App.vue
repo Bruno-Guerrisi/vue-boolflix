@@ -100,6 +100,25 @@ export default {
 <style lang="scss">
 @import '@/style/globals';
 
+    ::-webkit-scrollbar{
+        height: 10px;
+        width: 10px;
+        background-color: rgb(24, 24, 24);
+    }
+    ::-webkit-scrollbar-thumb{
+        background-color: rgb(43, 43, 43);
+        border-radius: 5px;
+
+        &:hover{
+
+            cursor: grab;
+        }
+    }
+    ::-webkit-scrollbar-track-piece{
+        background-color: rgb(97, 97, 97);
+        border-radius: 5px;
+    }
+
     #app{
         background-color: rgb(24, 24, 24);
         min-height: 100vh;

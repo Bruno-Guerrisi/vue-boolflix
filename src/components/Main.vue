@@ -10,21 +10,22 @@
                     @click="editFilms" 
                     :class="{red: addFilms == false,
                             green: addFilms == true }">
-                    Film
+                    Film: {{Films.length}}
             </button>
 
             <button class="series-list" 
                     @click="editSeries" 
                     :class="{red: addSeries == false,
                             green: addSeries == true }">
-                    Serie Tv
+                    Serie Tv: {{Series.length}}
             </button>
         </div>
 
         <div class="container-films-series">
 
             <!-- films -->
-            <div class="container-films-series" v-if="addFilms == true">
+            <h2 class="name-section" v-if="addFilms == true">Film</h2>
+            <div class="container-films" v-if="addFilms == true">
 
                 <ul class="film" v-for="(element, i) in Films" :key="`film-${i}`">
                     
@@ -39,7 +40,8 @@
             </div>
 
             <!-- series -->
-            <div class="container-films-series" v-if="addSeries == true">
+            <h2 class="name-section" v-if="addSeries == true">Serie TV</h2>
+            <div class="container-series" v-if="addSeries == true">
                 <ul class="film" v-for="(element, i) in Series" :key="`serie-${i}`">
                     
                     <Card :poster="element.poster_path"
@@ -51,6 +53,10 @@
                     :date="element.first_air_date" />
                 </ul>
             </div>
+
+            <span v-if="addFilms == false && addSeries == false">
+                Selezionare almeno un genere da visualizzare
+            </span>
         </div>
     </div>
 
@@ -150,21 +156,42 @@ export default {
         div.container-films-series{
 
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
 
-            ul.film{
+            span{
+                margin-top: 20px;
+            }
 
-                padding: 20px;
-                // max-width: calc(100% / 4);
-                
+            h2.name-section{
+                margin-top: 20px;
+                margin-bottom: 10px;
+            }
 
-                div{
-
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-
+            div.container-films,
+            div.container-series{
+    
+                display: flex;
+                width: 100%;
+                justify-content: center;
+                overflow-y: auto;
+                align-items: center;
+                flex-wrap: wrap;
+    
+    
+                ul.film{
+    
+                    padding: 20px;
+                    // max-width: calc(100% / 4);
+                    
+    
+                    div{
+    
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+    
+                    }
                 }
             }
         }
