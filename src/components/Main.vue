@@ -4,29 +4,54 @@
 
     <div v-if="Films != null || Series != null" class="main-container-all">
 
-        <!-- films -->
-        <ul class="film" v-for="(element, i) in Films" :key="`film-${i}`">
-            
-            <Card :poster="element.poster_path"
-            :title="element.title" 
-            :subTitle="element.original_title" 
-            :language="element.original_language" 
-            :num="element.vote_average"
-            :description="element.overview"
-            :date="element.release_date" />
-        </ul>
+        <div class="select-genres">
 
-        <!-- series -->
-        <ul class="film" v-for="(element, i) in Series" :key="`serie-${i}`">
-            
-            <Card :poster="element.poster_path"
-            :title="element.name"
-            :subTitle="element.original_name" 
-            :language="element.original_language" 
-            :num="element.vote_average"
-            :description="element.overview"
-            :date="element.first_air_date" />
-        </ul>
+            <button class="films-list" 
+                    @click="editFilms" 
+                    :class="{red: addFilms == false,
+                            green: addFilms == true }">
+                    Film
+            </button>
+
+            <button class="series-list" 
+                    @click="editSeries" 
+                    :class="{red: addSeries == false,
+                            green: addSeries == true }">
+                    Serie Tv
+            </button>
+        </div>
+
+        <div class="container-films-series">
+
+            <!-- films -->
+            <div class="container-films-series" v-if="addFilms == true">
+
+                <ul class="film" v-for="(element, i) in Films" :key="`film-${i}`">
+                    
+                    <Card :poster="element.poster_path"
+                    :title="element.title" 
+                    :subTitle="element.original_title" 
+                    :language="element.original_language" 
+                    :num="element.vote_average"
+                    :description="element.overview"
+                    :date="element.release_date" />
+                </ul>
+            </div>
+
+            <!-- series -->
+            <div class="container-films-series" v-if="addSeries == true">
+                <ul class="film" v-for="(element, i) in Series" :key="`serie-${i}`">
+                    
+                    <Card :poster="element.poster_path"
+                    :title="element.name"
+                    :subTitle="element.original_name" 
+                    :language="element.original_language" 
+                    :num="element.vote_average"
+                    :description="element.overview"
+                    :date="element.first_air_date" />
+                </ul>
+            </div>
+        </div>
     </div>
 
     <div v-else-if="Films == null && Series == null && SearchResult == '' ">
@@ -56,9 +81,36 @@ export default {
         Series: Array,
         SearchResult: String,
     },
+    data() {
+        return{
+
+            addFilms: true,
+            addSeries: true,
+        }
+    },
     components: {
         Card,
     },
+    methods: {
+
+        editFilms(){
+
+            if (this.addFilms == false) {
+                this.addFilms = true;
+            } else{
+                this.addFilms = false;
+            }
+        },
+
+        editSeries(){
+
+            if (this.addSeries == false) {
+                this.addSeries = true;
+            } else{
+                this.addSeries = false;
+            }
+        },
+    }
 }
 </script>
 
@@ -66,8 +118,36 @@ export default {
 
     div.container{
 
+        .select-genres{
 
-        div.main-container-all{
+            display: flex;
+            justify-content: center;
+
+            button {
+                margin: 0 10px;
+                border-radius: 5px;
+                padding: 5px;
+                cursor: pointer;
+                border: 0;
+                background-color: rgba(43, 43, 43);
+                transition: transform 0.1s;
+
+                &:hover{
+                    transform: scale(1.1);
+                }
+            }
+
+            button.red{
+                color: red;
+            }
+            button.green{
+                color: green;
+            }
+
+        }
+
+
+        div.container-films-series{
 
             display: flex;
             flex-wrap: wrap;
@@ -76,7 +156,8 @@ export default {
             ul.film{
 
                 padding: 20px;
-                width: calc(100% / 4);
+                // max-width: calc(100% / 4);
+                
 
                 div{
 
@@ -123,5 +204,53 @@ export default {
             }
         }
     }
+
+    /* @media screen and (max-width: 1000px) {
+
+        div.container{
+
+            div.container-films-series{
+
+                ul.film{
+
+                    padding: 20px;
+                    width: calc(100% / 3);
+
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 850px) {
+
+        div.container{
+
+            div.container-films-series{
+
+                ul.film{
+
+                    padding: 20px;
+                    width: calc(100% / 2);
+
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 800px) {
+
+        div.container{
+
+            div.container-films-series{
+
+                ul.film{
+
+                    padding: 20px;
+                    width: 100%;
+
+                }
+            }
+        }
+    } */
 
 </style>

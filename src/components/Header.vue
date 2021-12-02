@@ -14,7 +14,9 @@
                     v-model.trim="searchUser"
                     @keyup.enter="$emit('ClickSearch', searchUser)">
 
-            <button @click="$emit('ClickSearch', searchUser)">search</button>
+            <button @click="$emit('ClickSearch', searchUser)">
+                <i class="fas fa-search"></i>
+            </button>
         </div>
 
         <div class="language">
@@ -78,25 +80,47 @@ export default {
         .user-section{
             display: flex;
 
+
             div.search-bar{
-                height: 20px;
+                height: 30px;
                 display: flex;
                 align-items: center;
+                margin-right: 10px;
+                border-radius: 5px;
+                overflow: hidden;
+
     
                 input{
+                    height: 100%;
                     width: 150px;
                     height: 100%;
+                    border: 0;
+                    background-color: rgb(24, 24, 24);
+                    color: white;
+                    padding: 10px;
+
                 }
                 button{
-                    width: 50px;
+                    cursor: pointer;
                     height: 100%;
+                    width: 30px;
+                    height: 100%;
+                    border: 0;
+                    background-color: rgb(24, 24, 24);
+                    color: white;
                 }
             }
     
             div.language{
                 
                 select{
+                    cursor: pointer;
+                    height: 100%;
                     min-width: 50px;
+                    border: 0;
+                    background-color: rgb(24, 24, 24);
+                    color: white;
+                    border-radius: 5px;
                 }
             }
         }

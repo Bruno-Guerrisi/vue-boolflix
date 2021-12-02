@@ -101,16 +101,20 @@ export default {
 @import '@/style/globals';
 
     #app{
-        background-color: rgb(19, 19, 63);
+        background-color: rgb(24, 24, 24);
         min-height: 100vh;
+        min-width: 400px;
         
         header{
-            background-color: rgb(28, 28, 97);
+            background-color: rgb(43, 43, 43);
+            position: fixed;
+            width: 100%;
+            z-index: 1;
         }
 
         main{
             color: white;
-            padding: 20px;
+            padding: 80px 20px 20px 20px;
         }
     }
 
